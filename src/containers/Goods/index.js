@@ -12,7 +12,9 @@ import { updateQuery } from '../../actions/router';
 class Goods extends Component {
   constructor(props) {
     super(props);
+    this.handleRemove = this.handleRemove.bind(this);
     this.handleChangePage = this.handleChangePage.bind(this);
+    
     this.columns = [
       {
         title: '商品ID',
@@ -60,6 +62,9 @@ class Goods extends Component {
     ];
   }
 
+  handleRemove(id){
+    console.log('remove', id)
+  }
   handleChangePage(param) {
     console.log('params', param)
     console.log(this.props);
