@@ -4,13 +4,11 @@
   "private": true,
   "dependencies": {
     "antd": "^2.13.10",
-    "history": "^4.7.2",
-    "prop-types": "^15.5.10",
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1",
-    "react-redux": "^5.0.5",
-    "react-router-dom": "^4.2.2",
-    "react-router-redux": "^5.0.0-alpha.8",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.7.0",
+    "react-router-redux": "^4.0.8",
     "react-scripts": "1.0.11",
     "redux": "^3.5.2",
     "redux-logger": "^3.0.6",
@@ -23,7 +21,6 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "babel-plugin-import": "^1.6.2",
-    "query-string": "^5.0.1"
+    "babel-plugin-import": "^1.6.2"
   }
 }

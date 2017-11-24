@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom';
 
-import RouterTree from './router';
+import RouteTree from './router';
 import createStore from './store';
 import initState from './initState';
 
@@ -12,7 +12,7 @@ export default class App extends Component {
     const store = createStore(initState);
 
     return (
-      <RouterTree store={store}/>
+      <RouteTree store={store}/>
     )
   }
 }

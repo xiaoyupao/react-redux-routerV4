@@ -1,23 +1,18 @@
-import queryString from 'query-string';
 import { push, go, replace } from 'react-router-redux';
 export function updateQuery(newQuery) {
     return (dispatch, getState) => {
-        const { pathname, state } = getState().routing.location;
-        const oldQuery = queryString.parse(getState().routing.location.search);
-        const newestQuery = {
-            ...oldQuery,
-            ...newQuery
-        }
-        const nowQuery = queryString.stringify(newestQuery)
+        const { pathname, query, state } = getState().routing.locationBeforeTransitions;
+       
         const location = {
             pathname,
             state,
+            query: {
+                ...query,
+                ...newQuery
+            }
         };
-        location.search = '?'+nowQuery;
-        // ？getState().routing.location.search 手动更新
-        getState().routing.location.search =  '?'+nowQuery;
 
-        // ？push 后应该刷新页面，但这里只是URL变了，所以在 组件的changePage 中，再手动触发 fetchList
+        // 切换到router 2.0 则 location change了
         dispatch(push(location));
     }
 }

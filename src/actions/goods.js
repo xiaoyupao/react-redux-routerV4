@@ -1,4 +1,3 @@
-import queryString from 'query-string';
 import { GOODS_LIST_REQUEST, GOODS_LIST_FAIL, GOODS_LIST_SUCCESS } from '../constants/actionTypes';
 import { GOODS_LIST } from '../constants/api';
 
@@ -27,11 +26,9 @@ function rejectRequest() {
 export function fetchList() {
   return (dispatch, getState) => {
     dispatch(addRequest())
-    console.log('queryString', queryString.parse(getState().routing.location.search))
-    console.log('getState()', getState().routing.location)
-    const { pageIndex }  = queryString.parse(getState().routing.location.search)
-
-
+    console.log('locationBeforeTransitions', getState().routing.locationBeforeTransitions.query)
+    
+    const { pageIndex } = getState().routing.locationBeforeTransitions.query
     const params = { pageIndex };
 
     console.log('88888888fetchList')

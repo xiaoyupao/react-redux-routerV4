@@ -1,36 +1,27 @@
 import React, { Component } from 'react'
 import {
-  // BrowserRouter as Router,
-  Router,
-  Route,
-  Link,
-  Switch
-} from 'react-router-dom';
+  Router, Route, IndexRedirect, browserHistory, hashHistory
+} from 'react-router';
 import { Provider } from 'react-redux';
 
-// import creactHistory from 'history/createBrowserHistory';
-import createHistory from 'history/createBrowserHistory'
-import { syncHistoryWithStore, ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
+import { syncHistoryWithStore } from 'react-router-redux';
 
 import App from '../containers/App';
 import Home from '../containers/Home';
 import Goods from '../containers/Goods';
 import Orders from '../containers/Orders';
 
-const history = createHistory();
-
-
 export default function RouteTree({ store }) {
-
+  const history = syncHistoryWithStore(browserHistory, store);
   return (
     <Provider store={store}>
-      <ConnectedRouter history={history} >
-        <App>
-          <Route exact path="/" component={Home} />
+      <Router history={history} >
+        <Route path="/" component={App}>
+          <IndexRedirect to={'/'} />
           <Route path="/goods" component={Goods} />
           <Route path="/orders" component={Orders} />
-        </App>
-      </ConnectedRouter>
+        </Route>
+      </Router>
     </Provider>
   )
 

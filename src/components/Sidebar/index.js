@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import IndexLink from 'react-router';
 import {
     Link
-} from 'react-router-dom';
+} from 'react-router';
 import { Menu } from 'antd';
 // import NavLink from '../../components/NavLink';
 

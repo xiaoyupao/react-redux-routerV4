@@ -4,7 +4,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {
   Link
-} from 'react-router-dom'
+} from 'react-router'
+import { push, go, replace } from 'react-router-redux';
 import { Breadcrumb, Table, Button, Popconfirm } from 'antd';
 import { fetchList } from '../../actions/goods';
 import { updateQuery } from '../../actions/router';
@@ -13,8 +14,7 @@ class Goods extends Component {
   constructor(props) {
     super(props);
     this.handleRemove = this.handleRemove.bind(this);
-    this.handleChangePage = this.handleChangePage.bind(this);
-    
+
     this.columns = [
       {
         title: '商品ID',
@@ -62,21 +62,11 @@ class Goods extends Component {
     ];
   }
 
-  handleRemove(id){
+  handleRemove(id) {
     console.log('remove', id)
-  }
-  handleChangePage(param) {
-    console.log('params', param)
-    console.log(this.props);
-    this.props.changePage(param);
-    // this.props.fetchList();
-    // this.props.history.push('/orders')
   }
 
   componentDidMount() {
-    //   const { selectedReddit, fetchPostsIfNeeded } = this.props;
-
-    //   fetchPostsIfNeeded(selectedReddit);
     this.props.fetchList();
   }
 
@@ -86,12 +76,12 @@ class Goods extends Component {
     const { pageIndex, fetchList } = this.props;
 
     if (prevProps.pageIndex !== pageIndex) {
-      // fetchList();
+      fetchList();
     }
   }
 
   render() {
-    const { lists, total, pageIndex, changePage } = this.props;
+    const { lists, total, pageIndex, changePage, history } = this.props;
     console.log('this.props', this.props)
     const pagination = {
       total,
@@ -157,11 +147,10 @@ const mapStateToProps = ({ goods }, { location }) => {
 const mapDispatchToProps = dispatch => ({
   fetchList: () => dispatch(fetchList()),
   changePage: ({ current }) => {
-    const query = {
-      pageIndex: current
-    }
-    dispatch(updateQuery(query))
-    dispatch(fetchList())
+    // dispatch(push('/'))
+    dispatch(updateQuery({pageIndex: current}))
+    // dispatch(fetchList())
+    // store.dispatch(push('/'))
   }
 })
 

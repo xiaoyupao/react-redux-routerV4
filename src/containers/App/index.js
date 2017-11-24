@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import {
     Link,
     Router
-} from 'react-router-dom';
+} from 'react-router';
 import Sidebar from "../../components/Sidebar"
 import './index.css';
 
